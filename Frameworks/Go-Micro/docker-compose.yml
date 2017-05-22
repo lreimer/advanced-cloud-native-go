@@ -1,0 +1,35 @@
+version: '2'
+
+services: 
+  consul:
+    image: consul:0.8.3
+    ports:
+      - "8300:8300"
+      - "8400:8400"
+      - "8500:8500"
+    networks:
+      - sky-net
+  go-micro-server:
+    build:
+      context: .
+      dockerfile: server/Dockerfile
+    image: go-micro-server:1.0.1
+    depends_on:
+      - consul
+    networks:
+      - sky-net
+  go-micro-client:
+    build:
+      context: .
+      dockerfile: client/Dockerfile
+    image: go-micro-client:1.0.1      
+    depends_on:
+      - consul
+      - go-micro-server
+    networks:
+      - sky-net
+
+networks:
+  sky-net:
+    driver: bridge
+  
