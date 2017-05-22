@@ -1,6 +1,6 @@
 version: '2'
 services: 
-  microservice:
+  gin-web:
     build: .
     image: gin-web:1.0.1
     environment: 

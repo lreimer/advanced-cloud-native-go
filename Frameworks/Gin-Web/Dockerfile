@@ -1,7 +1,6 @@
 FROM golang:1.8.1-alpine
 
-RUN apk update && apk upgrade && \
-    apk add --no-cache bash git openssh
+RUN apk update && apk upgrade && apk add --no-cache bash git
 
 RUN go get github.com/gin-gonic/gin
 
