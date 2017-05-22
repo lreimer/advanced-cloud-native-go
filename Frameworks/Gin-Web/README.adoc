@@ -12,35 +12,21 @@ $ ./Gin-Web.exe
 == Containerization with Docker
 
 ```bash
-$ docker build -t cloud-native-go:1.0.1 .
+$ docker build -t gin-web:1.0.1 .
 $ docker images
 ```
 
 == Running Docker image locally
 
 ```bash
-$ docker run -it -p 8080:8080 cloud-native-go:1.0.1
-$ docker run -it -e "PORT=9090" -p 9090:9090 cloud-native-go:1.0.1
-$ docker ps --all
-
-$ docker run --name=cloud-native-go -d -p 8080:8080 cloud-native-go:1.0.1
+$ docker run --name=gin-web -d -e "PORT=9090" -p 9090:9090 gin-web:1.0.1
 $ docker ps
-$ docker stats
+
 $ docker stop
 $ docker start
 ```
 
-== Improved Containerization with Docker
-
-```bash
-$ GOOS=linux GOARCH=amd64 go build
-$ docker build -t cloud-native-go:1.0.1-alpine .
-$ docker images
-$ docker tag cloud-native-go:1.0.1-alpine lreimer/cloud-native-go:1.0.1-alpine
-$ docker push lreimer/cloud-native-go:1.0.1-alpine
-```
-
-== Docker Compose
+== Containerization and Run with Docker Compose
 
 ```bash
 $ docker-compose build
@@ -48,32 +34,6 @@ $ docker images
 $ docker-compose up -d
 $ docker-compose kill
 $ docker-compose rm
-```
-
-== Kubernetes and Pods
-
-```bash
-$ kubectl get pods
-$ kubectl create -f k8s-pod.yml
-$ kubectl get pods
-$ kubectl describe pod cloud-native-go
-
-$ kubectl port-forward cloud-native-go 8080:8080
-
-$ kubectl get pods --show-labels
-$ kubectl get pods -o wide -L env
-$ kubectl label pod cloud-native-go hello=world
-$ kubectl get pods -o wide -L hello
-$ kubectl label pod cloud-native-go env=prod --overwrite
-$ kubectl get pods -o wide -L env
-
-$ kubectl get ns
-$ kubectl get pods --namespace kube-system
-$ kubectl create -f k8s-namespace.yml
-$ kubectl get ns
-$ kubectl create -f k8s-pod.yml --namespace cloud-native-go
-
-$ kubectl delete -f k8s-pod.yml
 ```
 
 == Kubernetes Deployments and Services
@@ -97,7 +57,7 @@ $ kubectl delete -f k8s-service.yml
 == Kubernetes Scaling and Rolling Updates
 
 ```bash
-$ kubectl create -f k8s-deployment.yml --record=true
+$ kubectl apply -f k8s-deployment.yml --record=true
 
 $ kubectl scale deployment cloud-native-go --replicas=5
 $ kubectl scale deployment cloud-native-go --replicas=3
@@ -116,10 +76,3 @@ $ kubectl rollout undo deployment cloud-native-go --to-revision=0
 $ kubectl delete -f k8s-deployment.yml
 ```
 
-== Maintainer and Author
-
-M.-Leander Reimer (@lreimer)
-
-== License
-
-This software is provided under the MIT open source license, read the `LICENSE` file for details.

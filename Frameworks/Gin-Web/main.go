@@ -10,7 +10,7 @@ import (
 func main() {
 	engine := gin.Default()
 
-	engine.LoadHTMLGlob("templates/*.html")
+	engine.LoadHTMLGlob("./templates/*.html")
 	engine.StaticFile("/favicon.ico", "./favicon.ico")
 
 	engine.GET("/", func(c *gin.Context) {
