@@ -1,0 +1,21 @@
+image:https://img.shields.io/badge/license-MIT%20License-blue.svg["MIT License", link=LICENSE"]
+
+= Advanced Cloud Native Go
+
+This repository contains the example sources for the Advanced Cloud Native Go course.
+
+== Prerequisites
+
+In order to build and run this showcase you need to have a couple of things installed:
+
+* The Go SDK (e.g. using Brew)
+* An IDE for the development, like Visual Studio Code or IntelliJ
+* The Docker Toolbox or native Docker, whatever you prefer
+
+== Maintainer and Author
+
+M.-Leander Reimer (@lreimer)
+
+== License
+
+This software is provided under the MIT open source license, read the `LICENSE` file for details.
