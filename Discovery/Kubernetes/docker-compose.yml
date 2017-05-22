@@ -16,4 +16,7 @@ services:
       context: .
       dockerfile: client/Dockerfile
     image: simple-k8s-client:1.0.1      
-    
+    depends_on:
+    - simple-k8s-server
+    environment: 
+    - SERVICE_URL=http://simple-k8s-server:9090/info
