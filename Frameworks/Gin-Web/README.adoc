@@ -36,43 +36,21 @@ $ docker-compose kill
 $ docker-compose rm
 ```
 
-== Kubernetes Deployments and Services
+== Orchestration with Kubernetes
 
 ```bash
-$ kubectl get services,deployments,pods
+$ minikube dashboard
+$ kubectl cluster-info
 
-$ kubectl create -f k8s-deployment.yml
+$ kubectl get deployments,pods,services,ingress
+$ kubectl apply -f kubernetes/
+
 $ kubectl get deployments,pods
+$ kubectl scale deployment gin-web --replicas=4
 
-$ kubectl apply -f k8s-deployment.yml
-
-$ kubectl create -f k8s-service.yml
 $ kubectl get services
-$ kubectl describe service cloud-native-go
+$ kubectl describe service gin-web
+$ minikube service gin-web
 
-$ kubectl delete -f k8s-deployment.yml
-$ kubectl delete -f k8s-service.yml
+$ kubectl delete -f kubernetes/
 ```
-
-== Kubernetes Scaling and Rolling Updates
-
-```bash
-$ kubectl apply -f k8s-deployment.yml --record=true
-
-$ kubectl scale deployment cloud-native-go --replicas=5
-$ kubectl scale deployment cloud-native-go --replicas=3
-
-$ kubectl rollout history deployment cloud-native-go
-
-$ kubectl apply -f k8s-deployment.yml
-
-$ kubectl edit deployment cloud-native-go
-
-$ kubectl set image deployment cloud-native-go cloud-native-go=cloud-native-go:1.0.2
-
-$ kubectl rollout history deployment cloud-native-go
-$ kubectl rollout undo deployment cloud-native-go --to-revision=0
-
-$ kubectl delete -f k8s-deployment.yml
-```
-

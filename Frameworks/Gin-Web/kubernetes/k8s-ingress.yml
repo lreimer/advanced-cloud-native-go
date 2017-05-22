@@ -1,0 +1,11 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: gin-web
+  labels:
+    app: gin-web
+    tier: frontend
+spec:
+  backend:
+    serviceName: gin-web
+    servicePort: 9090
