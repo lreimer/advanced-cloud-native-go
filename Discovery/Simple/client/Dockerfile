@@ -1,0 +1,15 @@
+FROM golang:1.8.1-alpine
+
+RUN apk update && apk upgrade && apk add --no-cache bash git
+
+RUN go get github.com/hashicorp/consul/api
+
+ENV SOURCES /go/src/github.com/PacktPublishing/Advanced-Cloud-Native-Go/Discovery/Simple/
+COPY . ${SOURCES}
+
+RUN cd ${SOURCES}client/ && CGO_ENABLED=0 go build
+
+ENV CONSUL_HTTP_ADDR consul:8500
+
+WORKDIR ${SOURCES}client/
+CMD ${SOURCES}client/client
