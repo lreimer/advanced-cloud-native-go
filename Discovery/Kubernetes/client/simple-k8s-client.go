@@ -23,7 +23,7 @@ func main() {
 func initServiceURL() {
 	url = os.Getenv("SERVICE_URL")
 	if len(url) == 0 {
-		url = "http://simple-k8s-server:9090/info"
+		url = "http://simple-k8s-server:8080/info"
 	}
 }
 

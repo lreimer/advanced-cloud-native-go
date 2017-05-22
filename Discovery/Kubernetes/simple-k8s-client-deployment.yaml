@@ -14,4 +14,4 @@ spec:
         image: "simple-k8s-client:1.0.1"
         envFrom:
           - configMapRef:
-              name: simple-k8s-configmap
+              name: simple-k8s-config
