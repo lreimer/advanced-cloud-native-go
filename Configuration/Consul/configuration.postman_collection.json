@@ -1,0 +1,115 @@
+{
+	"variables": [],
+	"info": {
+		"name": "Consul K/V HTTP API",
+		"_postman_id": "ef41e1ae-db91-283f-010d-e5deac0e4708",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get Gin Web All Keys",
+			"request": {
+				"url": "http://localhost:8500/v1/kv/?keys",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Create Gin Web Message Key",
+			"request": {
+				"url": "http://localhost:8500/v1/kv/gin-web/message",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/plain",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "Hello Gin Framework."
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Get Gin Web All Configs",
+			"request": {
+				"url": "http://localhost:8500/v1/kv/gin-web?recurse",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Get Gin Web Message Config",
+			"request": {
+				"url": "http://localhost:8500/v1/kv/gin-web/message",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Get Gin Web Message Config (Raw)",
+			"request": {
+				"url": "http://localhost:8500/v1/kv/gin-web/message?raw=true",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Create Gin Web Message Key (Update)",
+			"request": {
+				"url": "http://localhost:8500/v1/kv/gin-web/message",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/plain",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "Hello Gin Framework (Updated)."
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Gin Web Configs",
+			"request": {
+				"url": "http://localhost:8500/v1/kv/gin-web?recurse=true",
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}

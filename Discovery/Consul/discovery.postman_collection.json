@@ -1,0 +1,146 @@
+{
+	"variables": [],
+	"info": {
+		"name": "Consul Discovery HTTP API",
+		"_postman_id": "5f32fc4e-ee91-f0f9-5890-2948e3b7fd6b",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get Consul Catalog Services",
+			"request": {
+				"url": "http://localhost:8500/v1/catalog/services?passing",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Get Consul Agent Services",
+			"request": {
+				"url": "http://localhost:8500/v1/agent/services",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Register Consul Agent Gin-Web-01",
+			"request": {
+				"url": "http://localhost:8500/v1/agent/service/register",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"ID\": \"gin-web-01\",\r\n  \"Name\": \"gin-web\",\r\n  \"Tags\": [\r\n    \"cloud-native-go\",\r\n    \"v1\"\r\n  ],\r\n  \"Address\": \"gin-web-01\",\r\n  \"Port\": 8080,\r\n  \"EnableTagOverride\": false,\r\n  \"check\": {\r\n    \"id\": \"ping\",\r\n    \"name\": \"HTTP API on port 8080\",\r\n    \"http\": \"http://gin-web-01:8080/ping\",\r\n    \"interval\": \"5s\",\r\n    \"timeout\": \"1s\"\r\n  }\r\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Deregister Consul Agent Gin-Web-01",
+			"request": {
+				"url": "http://localhost:8500/v1/agent/service/deregister/gin-web-01",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"ID\": \"gin-web-01\",\r\n  \"Name\": \"Gin Web\",\r\n  \"Tags\": [\r\n    \"cloud-native-go\",\r\n    \"v1\"\r\n  ],\r\n  \"Address\": \"gin-web-01\",\r\n  \"Port\": 8080,\r\n  \"EnableTagOverride\": false,\r\n  \"Check\": {\r\n    \"DeregisterCriticalServiceAfter\": \"5m\",\r\n    \"HTTP\": \"http://gin-web-01:8080/ping\",\r\n    \"Interval\": \"10s\",\r\n    \"TTL\": \"15s\"\r\n  }\r\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Register Consul Agent Gin-Web-02",
+			"request": {
+				"url": "http://localhost:8500/v1/agent/service/register",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"ID\": \"gin-web-02\",\r\n  \"Name\": \"gin-web\",\r\n  \"Tags\": [\r\n    \"cloud-native-go\",\r\n    \"v1\"\r\n  ],\r\n  \"Address\": \"gin-web-02\",\r\n  \"Port\": 9090,\r\n  \"EnableTagOverride\": false,\r\n  \"check\": {\r\n    \"id\": \"ping\",\r\n    \"name\": \"HTTP API on port 9090\",\r\n    \"http\": \"http://gin-web-02:9090/ping\",\r\n    \"interval\": \"5s\",\r\n    \"timeout\": \"1s\"\r\n  }\r\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Deregister Consul Agent Gin-Web-02",
+			"request": {
+				"url": "http://localhost:8500/v1/agent/service/deregister/gin-web-02",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"ID\": \"gin-web-01\",\r\n  \"Name\": \"Gin Web\",\r\n  \"Tags\": [\r\n    \"cloud-native-go\",\r\n    \"v1\"\r\n  ],\r\n  \"Address\": \"gin-web-01\",\r\n  \"Port\": 8080,\r\n  \"EnableTagOverride\": false,\r\n  \"Check\": {\r\n    \"DeregisterCriticalServiceAfter\": \"5m\",\r\n    \"HTTP\": \"http://gin-web-01:8080/ping\",\r\n    \"Interval\": \"10s\",\r\n    \"TTL\": \"15s\"\r\n  }\r\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Get Consul Health Gin-Web Passing",
+			"request": {
+				"url": "http://localhost:8500/v1/health/service/gin-web?passing",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Get Consul Health Gin-Web All",
+			"request": {
+				"url": "http://localhost:8500/v1/health/service/gin-web",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Get Consul Critical Heath Checks",
+			"request": {
+				"url": "http://localhost:8500/v1/health/state/critical",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}

@@ -1,0 +1,33 @@
+= Service Configuration with Consul
+
+== Start and Run Consul
+
+We will be using Docker Compose to start and run Consul.
+
+```bash
+$ docker-compose up
+```
+
+== Explore the CLI and Web UI
+
+Open a browser with the following URL and browse to the KV section: http://localhost:8500/
+
+You can also use the `consul` CLI to create, read, update and delete K/V pairs.
+
+```bash
+$ consul kv get example/key
+$ consul kv put example/key "Hello World."
+
+$ consul kv put foo bar
+$ consul kv get foo
+
+$ consul kv put foo zip
+$ consul kv get foo
+
+$ consul kv delete foo
+$ consul kv delete example/key
+```
+
+== Exploring the HTTP API
+
+Import the supplied Postman JSON collection file and perform the HTTP calls.
