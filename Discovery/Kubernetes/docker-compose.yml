@@ -1,0 +1,19 @@
+version: '2'
+
+services: 
+  simple-k8s-server:
+    build:
+      context: .
+      dockerfile: server/Dockerfile
+    image: simple-k8s-server:1.0.1
+    environment: 
+    - PORT=9090
+    ports: 
+    - "9090:9090"
+
+  simple-k8s-client:
+    build:
+      context: .
+      dockerfile: client/Dockerfile
+    image: simple-k8s-client:1.0.1      
+    

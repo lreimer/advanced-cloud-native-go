@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: simple-k8s-config
+  namespace: default
+data:
+  service_url: "http://simple-k8s-server:9090/info"
