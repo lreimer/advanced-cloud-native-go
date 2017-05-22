@@ -36,13 +36,13 @@ spec:
         # check of gin-web is alive and healthy
         readinessProbe:
           httpGet:
-            path: /hello
+            path: /ping
             port: 9090
           initialDelaySeconds: 5
           timeoutSeconds: 5
         livenessProbe:
           httpGet:
-            path: /hello
+            path: /ping
             port: 9090
           initialDelaySeconds: 5
           timeoutSeconds: 5       
