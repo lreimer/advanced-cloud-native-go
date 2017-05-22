@@ -14,7 +14,7 @@ func main() {
 func info(w http.ResponseWriter, r *http.Request) {
 	fmt.Println("The /info endpoint is being called...")
 	w.WriteHeader(http.StatusOK)
-	fmt.Fprintf(w, "Hello Kubernetes Discovery")
+	fmt.Fprintf(w, "Hello Kubernetes Discovery & Configuration")
 }
 
 func port() string {

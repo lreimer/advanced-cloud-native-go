@@ -12,6 +12,9 @@ spec:
       containers:
       - name: simple-k8s-client
         image: "simple-k8s-client:1.0.1"
-        envFrom:
-          - configMapRef:
+        env:
+        - name: SERVICE_URL
+          valueFrom:
+            configMapKeyRef:
               name: simple-k8s-config
+              key: service.url
