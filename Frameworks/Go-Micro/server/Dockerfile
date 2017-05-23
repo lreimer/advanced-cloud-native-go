@@ -2,14 +2,16 @@ FROM golang:1.8.1-alpine
 
 RUN apk update && apk upgrade && apk add --no-cache bash git
 
-RUN go get -u github.com/micro/micro && go get github.com/micro/protobuf/proto && go get -u github.com/micro/protobuf/protoc-gen-go
+RUN go get -u github.com/micro/micro && \
+    go get github.com/micro/protobuf/proto && \
+    go get -u github.com/micro/protobuf/protoc-gen-go
 
 ENV SOURCES /go/src/github.com/PacktPublishing/Advanced-Cloud-Native-Go/Frameworks/Go-Micro/
 COPY . ${SOURCES}
 
 RUN cd ${SOURCES}server/ && CGO_ENABLED=0 go build
 
-ENV CONSUL_HTTP_ADDR consul:8500
+ENV CONSUL_HTTP_ADDR localhost:8500
 
 WORKDIR ${SOURCES}server/
 CMD ${SOURCES}server/server
