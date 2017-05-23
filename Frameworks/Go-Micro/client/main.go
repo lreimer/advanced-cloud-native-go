@@ -2,6 +2,8 @@ package main
 
 import (
 	"fmt"
+	"net"
+	"net/http"
 	"time"
 
 	proto "github.com/PacktPublishing/Advanced-Cloud-Native-Go/Frameworks/Go-Micro/proto"
@@ -30,7 +32,9 @@ func hello(t time.Time, greeter proto.GreeterClient) {
 	// Call the greeter
 	rsp, err := greeter.Hello(context.TODO(), &proto.HelloRequest{Name: "Leander, calling at " + t.String()})
 	if err != nil {
-		fmt.Println(err.Error())
+		if err.Error() == "hystrix: timeout" {
+			fmt.Printf("%s. Insert fallback logic here.\n", err.Error())
+		}
 		return
 	}
 
@@ -56,11 +60,16 @@ func main() {
 	)
 
 	// override the defaul values for the Hystrix breaker
-	hystrix.DefaultVolumeThreshold = 5
+	hystrix.DefaultVolumeThreshold = 10
 	hystrix.DefaultTimeout = 500
 	hystrix.DefaultSleepWindow = 10000
 
+	// export turbine stream
+	hystrixStreamHandler := hystrix.NewStreamHandler()
+	hystrixStreamHandler.Start()
+	go http.ListenAndServe(net.JoinHostPort("", "8081"), hystrixStreamHandler)
+
 	// Create new greeter client and call hello
 	greeter := proto.NewGreeterClient("greeter", service.Client())
-	callEvery(5*time.Second, greeter, hello)
+	callEvery(3*time.Second, greeter, hello)
 }

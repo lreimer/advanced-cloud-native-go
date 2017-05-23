@@ -9,6 +9,7 @@ services:
       - "8500:8500"
     networks:
       - sky-net
+
   go-micro-server:
     build:
       context: .
@@ -20,6 +21,7 @@ services:
       - consul
     networks:
       - sky-net
+
   go-micro-client:
     build:
       context: .
@@ -30,6 +32,13 @@ services:
     depends_on:
       - consul
       - go-micro-server
+    networks:
+      - sky-net
+
+  hystrix-dashboard:
+    image: mlabouardy/hystrix-dashboard:latest
+    ports:
+      - "9002:9002"
     networks:
       - sky-net
 

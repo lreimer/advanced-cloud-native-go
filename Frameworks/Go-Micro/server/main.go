@@ -12,12 +12,14 @@ import (
 // The Greeter API.
 type Greeter struct{}
 
-var timeout time.Duration
+var counter int
 
 // Hello is a Greeter API method.
 func (g *Greeter) Hello(ctx context.Context, req *proto.HelloRequest, rsp *proto.HelloResponse) error {
-	timeout = timeout + 100
-	time.Sleep(timeout * time.Millisecond)
+	counter++
+	if counter > 7 && counter < 15 {
+		time.Sleep(1000 * time.Millisecond)
+	}
 
 	rsp.Greeting = "Hello " + req.Name
 	return nil
