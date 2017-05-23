@@ -5,7 +5,9 @@ import (
 	"time"
 
 	proto "github.com/PacktPublishing/Advanced-Cloud-Native-Go/Frameworks/Go-Micro/proto"
+	hystrix "github.com/afex/hystrix-go/hystrix"
 	micro "github.com/micro/go-micro"
+	breaker "github.com/micro/go-plugins/wrapper/breaker/hystrix"
 	"golang.org/x/net/context"
 )
 
@@ -28,7 +30,7 @@ func hello(t time.Time, greeter proto.GreeterClient) {
 	// Call the greeter
 	rsp, err := greeter.Hello(context.TODO(), &proto.HelloRequest{Name: "Leander, calling at " + t.String()})
 	if err != nil {
-		fmt.Println(err)
+		fmt.Println(err.Error())
 		return
 	}
 
@@ -47,12 +49,18 @@ func main() {
 	)
 
 	// Init will parse the command line flags. Any flags set will
-	// override the above settings. Options defined here will
-	// override anything set on the command line.
-	service.Init()
+	// override the above settings.
+	// specify a Hystrix breaker client wrapper here
+	service.Init(
+		micro.WrapClient(breaker.NewClientWrapper()),
+	)
 
-	// Create new greeter client
+	// override the defaul values for the Hystrix breaker
+	hystrix.DefaultVolumeThreshold = 5
+	hystrix.DefaultTimeout = 500
+	hystrix.DefaultSleepWindow = 10000
+
+	// Create new greeter client and call hello
 	greeter := proto.NewGreeterClient("greeter", service.Client())
-
 	callEvery(5*time.Second, greeter, hello)
 }
