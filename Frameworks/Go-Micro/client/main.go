@@ -34,6 +34,8 @@ func hello(t time.Time, greeter proto.GreeterClient) {
 	if err != nil {
 		if err.Error() == "hystrix: timeout" {
 			fmt.Printf("%s. Insert fallback logic here.\n", err.Error())
+		} else {
+			fmt.Println(err.Error())
 		}
 		return
 	}
@@ -60,8 +62,10 @@ func main() {
 	)
 
 	// override some default values for the Hystrix breaker
-	hystrix.DefaultVolumeThreshold = 5
+	hystrix.DefaultVolumeThreshold = 3
+	hystrix.DefaultErrorPercentThreshold = 75
 	hystrix.DefaultTimeout = 500
+	hystrix.DefaultSleepWindow = 3500
 
 	// export Hystrix stream
 	hystrixStreamHandler := hystrix.NewStreamHandler()
