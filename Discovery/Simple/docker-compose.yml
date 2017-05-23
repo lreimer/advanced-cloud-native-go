@@ -26,7 +26,7 @@ services:
     build:
       context: .
       dockerfile: client/Dockerfile
-    image: simple-client:1.0.1   
+    image: simple-client:1.0.1
     environment: 
       - CONSUL_HTTP_ADDR=consul:8500   
     depends_on:

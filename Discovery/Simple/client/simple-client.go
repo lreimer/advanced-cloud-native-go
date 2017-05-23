@@ -14,6 +14,7 @@ var url string
 func main() {
 	lookupServiceWithConsul()
 
+	fmt.Println("Starting Simple Client.")
 	var client = &http.Client{
 		Timeout: time.Second * 10,
 	}
@@ -33,8 +34,9 @@ func lookupServiceWithConsul() {
 		fmt.Println(error)
 	}
 
-	address := services["simple-server"].Address
-	port := services["simple-server"].Port
+	service := services["simple-server"]
+	address := service.Address
+	port := service.Port
 
 	url = fmt.Sprintf("http://%s:%v/info", address, port)
 }
