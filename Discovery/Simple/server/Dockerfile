@@ -9,7 +9,7 @@ COPY . ${SOURCES}
 
 RUN cd ${SOURCES}server/ && CGO_ENABLED=0 go build
 
-ENV CONSUL_HTTP_ADDR consul:8500
+ENV CONSUL_HTTP_ADDR localhost:8500
 
 WORKDIR ${SOURCES}server/
 CMD ${SOURCES}server/server

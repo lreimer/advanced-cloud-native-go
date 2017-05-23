@@ -12,6 +12,7 @@ import (
 func main() {
 	registerServiceWithConsul()
 
+	fmt.Println("Starting Simple Server.")
 	http.HandleFunc("/info", info)
 	http.ListenAndServe(port(), nil)
 }
