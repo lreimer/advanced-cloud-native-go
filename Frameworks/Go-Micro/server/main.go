@@ -19,6 +19,8 @@ func (g *Greeter) Hello(ctx context.Context, req *proto.HelloRequest, rsp *proto
 	counter++
 	if counter > 7 && counter < 15 {
 		time.Sleep(1000 * time.Millisecond)
+	} else {
+		time.Sleep(100 * time.Millisecond)
 	}
 
 	rsp.Greeting = "Hello " + req.Name

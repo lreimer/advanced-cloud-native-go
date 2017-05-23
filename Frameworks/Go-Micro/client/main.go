@@ -59,12 +59,11 @@ func main() {
 		micro.WrapClient(breaker.NewClientWrapper()),
 	)
 
-	// override the defaul values for the Hystrix breaker
-	hystrix.DefaultVolumeThreshold = 10
+	// override some default values for the Hystrix breaker
+	hystrix.DefaultVolumeThreshold = 5
 	hystrix.DefaultTimeout = 500
-	hystrix.DefaultSleepWindow = 10000
 
-	// export turbine stream
+	// export Hystrix stream
 	hystrixStreamHandler := hystrix.NewStreamHandler()
 	hystrixStreamHandler.Start()
 	go http.ListenAndServe(net.JoinHostPort("", "8081"), hystrixStreamHandler)
