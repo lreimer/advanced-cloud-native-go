@@ -24,6 +24,7 @@ func (g *Greeter) Hello(ctx context.Context, req *proto.HelloRequest, rsp *proto
 	}
 
 	rsp.Greeting = "Hello " + req.Name
+	fmt.Printf("Responding with %s\n", rsp.Greeting)
 	return nil
 }
 
