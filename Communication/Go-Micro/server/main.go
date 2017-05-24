@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"time"
 
-	proto "github.com/PacktPublishing/Advanced-Cloud-Native-Go/Frameworks/Go-Micro/proto"
+	proto "github.com/PacktPublishing/Advanced-Cloud-Native-Go/Communication/Go-Micro/proto"
 	micro "github.com/micro/go-micro"
 	"golang.org/x/net/context"
 )
