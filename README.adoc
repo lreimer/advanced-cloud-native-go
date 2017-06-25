@@ -12,6 +12,12 @@ In order to build and run this showcase you need to have a couple of things inst
 * An IDE for the development, like Visual Studio Code or IntelliJ
 * The Docker Toolbox or native Docker, whatever you prefer
 
+== References
+
+* https://gokit.io[Go Kit: A toolkit for microservices]
+* https://github.com/micro/go-micro[Go microservice framework]
+* https://www.packtpub.com/application-development/advanced-cloud-native-go-video[Packt Video Course]
+
 == Maintainer and Author
 
 M.-Leander Reimer (@lreimer)
