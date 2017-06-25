@@ -6,8 +6,8 @@ import (
 	"net/http"
 	"time"
 
-	proto "github.com/PacktPublishing/Advanced-Cloud-Native-Go/Communication/Go-Micro/proto"
 	hystrix "github.com/afex/hystrix-go/hystrix"
+	proto "github.com/lreimer/advanced-cloud-native-go/Communication/Go-Micro/proto"
 	micro "github.com/micro/go-micro"
 	breaker "github.com/micro/go-plugins/wrapper/breaker/hystrix"
 	"golang.org/x/net/context"

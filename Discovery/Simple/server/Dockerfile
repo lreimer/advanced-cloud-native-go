@@ -4,7 +4,7 @@ RUN apk update && apk upgrade && apk add --no-cache bash git
 
 RUN go get github.com/hashicorp/consul/api
 
-ENV SOURCES /go/src/github.com/PacktPublishing/Advanced-Cloud-Native-Go/Discovery/Simple/
+ENV SOURCES /go/src/github.com/lreimer/advanced-cloud-native-go/Discovery/Simple/
 COPY . ${SOURCES}
 
 RUN cd ${SOURCES}server/ && CGO_ENABLED=0 go build

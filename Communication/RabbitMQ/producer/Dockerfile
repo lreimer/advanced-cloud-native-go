@@ -4,7 +4,7 @@ RUN apk update && apk upgrade && apk add --no-cache bash git
 
 RUN go get github.com/streadway/amqp
 
-ENV SOURCES /go/src/github.com/PacktPublishing/Advanced-Cloud-Native-Go/Communication/RabbitMQ/
+ENV SOURCES /go/src/github.com/lreimer/advanced-cloud-native-go/Communication/RabbitMQ/
 COPY . ${SOURCES}
 
 RUN cd ${SOURCES}producer/ && CGO_ENABLED=0 go build

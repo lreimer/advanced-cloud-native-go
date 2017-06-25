@@ -6,7 +6,7 @@ RUN go get -u github.com/micro/micro && \
     go get github.com/micro/protobuf/proto && \
     go get -u github.com/micro/protobuf/protoc-gen-go
 
-ENV SOURCES /go/src/github.com/PacktPublishing/Advanced-Cloud-Native-Go/Communication/Go-Micro/
+ENV SOURCES /go/src/github.com/lreimer/advanced-cloud-native-go/Communication/Go-Micro/
 COPY . ${SOURCES}
 
 RUN cd ${SOURCES}server/ && CGO_ENABLED=0 go build
